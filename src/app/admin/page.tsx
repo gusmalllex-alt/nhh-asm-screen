@@ -120,9 +120,6 @@ export default function AdminDashboard() {
       count
     }));
 
-  // Average score
-  const avgScore = total > 0 ? (filteredData.reduce((sum, item) => sum + item.score, 0) / total).toFixed(1) : 0;
-
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
       return (
@@ -325,7 +322,7 @@ export default function AdminDashboard() {
                   <YAxis dataKey="name" type="category" axisLine={false} tickLine={false} tick={{fill: '#475569', fontSize: 13, fontWeight: 600}} width={280} />
                   <RechartsTooltip cursor={{fill: '#f8fafc'}} content={<CustomTooltip />} />
                   <Bar dataKey="count" name="จำนวน (คน)" fill="url(#colorFuchsia)" radius={[0, 8, 8, 0]} barSize={20}>
-                    <LabelList dataKey="count" position="right" fill="#64748b" fontSize={13} fontWeight={600} formatter={(value: number) => `${value} คน`} />
+                    <LabelList dataKey="count" position="right" fill="#64748b" fontSize={13} fontWeight={600} formatter={(value: any) => `${value} คน`} />
                   </Bar>
                 </BarChart>
               </ResponsiveContainer>
@@ -381,7 +378,7 @@ export default function AdminDashboard() {
                 <YAxis axisLine={false} tickLine={false} tick={{fill: '#475569', fontSize: 13}} />
                 <RechartsTooltip cursor={{fill: '#f8fafc'}} content={<CustomTooltip />} />
                 <Bar dataKey="count" name="จำนวน (คน)" fill="url(#colorTeal)" radius={[8, 8, 0, 0]} barSize={40}>
-                  <LabelList dataKey="count" position="top" fill="#64748b" fontSize={13} fontWeight={600} formatter={(value: number) => `${value} คน`} />
+                  <LabelList dataKey="count" position="top" fill="#64748b" fontSize={13} fontWeight={600} formatter={(value: any) => `${value} คน`} />
                   {
                     scoreDistribution.map((entry, index) => {
                       const scoreNum = parseInt(entry.score);
