@@ -59,8 +59,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
-              <h1 className="text-3xl font-bold text-white tracking-tight">ระบบหลังบ้าน</h1>
-              <p className="text-blue-200 mt-2 font-medium">ระบบคัดกรอง 3 สี อสม.</p>
+              <h1 className="text-2xl font-bold text-white tracking-tight">
+                ระบบคัดกรอง 3 สี อสม.<br />
+                โรงพยาบาลหนองหาน
+              </h1>
             </div>
             
             <form onSubmit={handleLogin} className="space-y-6">
@@ -126,8 +128,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               </svg>
             </div>
             <div>
-              <h2 className="text-xl font-bold text-gray-800 tracking-tight">Admin Panel</h2>
-              <p className="text-[11px] font-medium text-gray-400 uppercase tracking-wider">ระบบหลังบ้าน</p>
+              <h2 className="text-xl font-bold text-gray-800 tracking-tight">ระบบ 3 สี อสม.</h2>
+              <p className="text-[11px] font-medium text-gray-400 uppercase tracking-wider">โรงพยาบาลหนองหาน</p>
             </div>
           </div>
         </div>

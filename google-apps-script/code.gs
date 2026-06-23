@@ -93,7 +93,7 @@ function doPost(e) {
       ]);
       return ContentService.createTextOutput(JSON.stringify({
         status: "success",
-        message: "บันทึกข้อมูลลง Google Sheet สำเร็จ"
+        message: "บันทึกข้อมูลสำเร็จ"
       })).setMimeType(ContentService.MimeType.JSON);
     }
     

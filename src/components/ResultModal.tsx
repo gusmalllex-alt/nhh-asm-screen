@@ -150,7 +150,7 @@ export default function ResultModal({
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                   </span>
-                  <span>บันทึกข้อมูลลง Google Sheet สำเร็จ</span>
+                  <span>บันทึกข้อมูลสำเร็จ</span>
                 </>
               ) : result.syncStatus === 'pending' ? (
                 <>
@@ -158,7 +158,7 @@ export default function ResultModal({
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                   </span>
-                  <span>กำลังส่งข้อมูลไปยัง Google Sheet...</span>
+                  <span>กำลังส่งข้อมูล</span>
                 </>
               ) : (
                 <>
