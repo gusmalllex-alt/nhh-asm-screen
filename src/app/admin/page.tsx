@@ -10,6 +10,10 @@ interface DataRow {
   lastName: string;
   assessDate: string;
   score: number;
+  addressNo?: string;
+  addressMoo?: string;
+  subDistrict?: string;
+  phoneNumber?: string;
   selectedItems: string;
   levelLabel: string;
   recommendation: string;
@@ -119,6 +123,22 @@ export default function AdminDashboard() {
       score: `${score} คะแนน`,
       count
     }));
+
+  // Area (Sub-district) Analysis Data
+  const areaDataMap = filteredData.reduce((acc, curr) => {
+    const area = curr.subDistrict || 'ไม่ระบุ';
+    if (!acc[area]) {
+      acc[area] = { name: area, ปกติ: 0, เฝ้าระวัง: 0, พบแพทย์: 0, total: 0 };
+    }
+    acc[area].total += 1;
+    if (curr.levelLabel.includes('ปกติ')) acc[area].ปกติ += 1;
+    else if (curr.levelLabel.includes('เฝ้าระวัง')) acc[area].เฝ้าระวัง += 1;
+    else if (curr.levelLabel.includes('พบแพทย์')) acc[area].พบแพทย์ += 1;
+    return acc;
+  }, {} as Record<string, any>);
+
+  const areaData = Object.values(areaDataMap)
+    .sort((a, b) => b.total - a.total); // Sort by total cases descending
 
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
@@ -396,6 +416,40 @@ export default function AdminDashboard() {
             <div className="flex flex-col items-center justify-center h-full text-gray-400">
               <svg className="w-12 h-12 mb-3 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" /></svg>
               <p className="text-sm font-medium">ไม่พบข้อมูลคะแนน</p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Area Analysis Chart */}
+      <div className="bg-white rounded-[24px] overflow-hidden shadow-sm border border-gray-100 flex flex-col p-6 mt-6">
+        <h2 className="text-lg font-bold text-gray-800 mb-6 flex items-center gap-2">
+          <svg className="w-5 h-5 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" /></svg>
+          การวิเคราะห์พื้นที่ (จำนวนผู้ป่วยแยกตามตำบล)
+        </h2>
+        <div className="h-[400px] w-full">
+          {areaData.length > 0 ? (
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={areaData} layout="vertical" margin={{ top: 0, right: 30, left: 0, bottom: 0 }}>
+                <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="#f1f5f9" />
+                <XAxis type="number" tickLine={false} axisLine={false} tick={{fill: '#64748b', fontSize: 12}} />
+                <YAxis dataKey="name" type="category" axisLine={false} tickLine={false} tick={{fill: '#475569', fontSize: 13, fontWeight: 500}} width={120} />
+                <RechartsTooltip cursor={{fill: '#f8fafc'}} content={<CustomTooltip />} />
+                <Legend 
+                  verticalAlign="top" 
+                  height={36}
+                  iconType="circle"
+                  formatter={(value) => <span className="text-gray-700 font-medium">{value}</span>}
+                />
+                <Bar dataKey="ปกติ" stackId="a" fill="#10b981" barSize={24} />
+                <Bar dataKey="เฝ้าระวัง" stackId="a" fill="#f59e0b" />
+                <Bar dataKey="พบแพทย์" stackId="a" fill="#f43f5e" radius={[0, 4, 4, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          ) : (
+            <div className="flex flex-col items-center justify-center h-full text-gray-400">
+              <svg className="w-12 h-12 mb-3 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+              <p className="text-sm font-medium">ไม่พบข้อมูลพื้นที่</p>
             </div>
           )}
         </div>

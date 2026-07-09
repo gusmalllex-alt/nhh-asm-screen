@@ -9,6 +9,10 @@ interface DataRow {
   lastName: string;
   assessDate: string;
   score: number;
+  addressNo?: string;
+  addressMoo?: string;
+  subDistrict?: string;
+  phoneNumber?: string;
   selectedItems: string;
   levelLabel: string;
   recommendation: string;
@@ -159,9 +163,11 @@ export default function AdminDataPage() {
             <tr>
               <th className="px-4 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider border-y border-slate-200 border-r border-r-slate-100 whitespace-nowrap w-32 min-w-[120px]">วันที่ประเมิน</th>
               <th className="px-4 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider border-y border-slate-200 border-r border-r-slate-100 whitespace-nowrap w-48 min-w-[200px]">ชื่อ-นามสกุล</th>
-              <th className="px-4 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider border-y border-slate-200 border-r border-r-slate-100 w-full min-w-[350px] text-center">อาการที่พบ</th>
-              <th className="px-4 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider border-y border-slate-200 border-r border-r-slate-100 whitespace-nowrap w-auto">คะแนน / สถานะ</th>
-              <th className="px-4 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider border-y border-slate-200 text-right whitespace-nowrap w-20">จัดการ</th>
+              <th className="px-4 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider border-y border-slate-200 border-r border-r-slate-100 whitespace-nowrap w-48 min-w-[250px]">ที่อยู่ / เบอร์โทร</th>
+              <th className="px-4 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider border-y border-slate-200 border-r border-r-slate-100 w-full min-w-[300px]">อาการที่พบ</th>
+              <th className="px-4 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider border-y border-slate-200 border-r border-r-slate-100 whitespace-nowrap w-auto min-w-[150px]">คะแนน / สถานะ</th>
+              <th className="px-4 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider border-y border-slate-200 border-r border-r-slate-100 min-w-[200px]">คำแนะนำ</th>
+              <th className="px-4 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider border-y border-slate-200 text-right whitespace-nowrap w-24">จัดการ</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100 bg-white">
@@ -172,37 +178,87 @@ export default function AdminDataPage() {
                     <input type="date" className="border border-gray-300 rounded-lg px-3 py-2 text-sm w-full focus:ring-2 focus:ring-blue-500 outline-none" value={editForm.assessDate || ''} onChange={e => setEditForm({...editForm, assessDate: e.target.value})} />
                   ) : row.assessDate ? row.assessDate.split('T')[0] : ''}
                 </td>
-                <td className="px-4 py-4 text-sm text-gray-800 font-semibold">
+                <td className="px-4 py-4 text-sm text-gray-800 font-semibold align-top">
                   {editingId === row.id ? (
-                    <div className="flex gap-2">
-                      <input type="text" placeholder="ชื่อ" className="border border-gray-300 rounded-lg px-3 py-2 text-sm w-1/2 focus:ring-2 focus:ring-blue-500 outline-none" value={editForm.firstName || ''} onChange={e => setEditForm({...editForm, firstName: e.target.value})} />
-                      <input type="text" placeholder="นามสกุล" className="border border-gray-300 rounded-lg px-3 py-2 text-sm w-1/2 focus:ring-2 focus:ring-blue-500 outline-none" value={editForm.lastName || ''} onChange={e => setEditForm({...editForm, lastName: e.target.value})} />
+                    <div className="flex flex-col gap-2">
+                      <input type="text" placeholder="ชื่อ" className="border border-gray-300 rounded-lg px-3 py-2 text-sm w-full focus:ring-2 focus:ring-blue-500 outline-none" value={editForm.firstName || ''} onChange={e => setEditForm({...editForm, firstName: e.target.value})} />
+                      <input type="text" placeholder="นามสกุล" className="border border-gray-300 rounded-lg px-3 py-2 text-sm w-full focus:ring-2 focus:ring-blue-500 outline-none" value={editForm.lastName || ''} onChange={e => setEditForm({...editForm, lastName: e.target.value})} />
                     </div>
                   ) : `${row.firstName} ${row.lastName}`}
                 </td>
-                <td className="px-4 py-4 text-sm text-gray-600 truncate max-w-[600px] text-center" title={row.selectedItems}>
-                  {row.selectedItems}
+                <td className="px-4 py-4 text-sm text-gray-600 align-top">
+                  {editingId === row.id ? (
+                    <div className="flex flex-col gap-2">
+                      <div className="flex gap-2">
+                        <input type="text" placeholder="บ้านเลขที่" className="border border-gray-300 rounded-lg px-2 py-2 text-sm w-1/2 focus:ring-2 focus:ring-blue-500 outline-none" value={editForm.addressNo || ''} onChange={e => setEditForm({...editForm, addressNo: e.target.value})} />
+                        <input type="text" placeholder="หมู่ที่" className="border border-gray-300 rounded-lg px-2 py-2 text-sm w-1/2 focus:ring-2 focus:ring-blue-500 outline-none" value={editForm.addressMoo || ''} onChange={e => setEditForm({...editForm, addressMoo: e.target.value})} />
+                      </div>
+                      <select className="border border-gray-300 rounded-lg px-2 py-2 text-sm w-full focus:ring-2 focus:ring-blue-500 outline-none" value={editForm.subDistrict || ''} onChange={e => setEditForm({...editForm, subDistrict: e.target.value})}>
+                        <option value="">-- เลือกตำบล --</option>
+                        {['ตำบลหนองหาน','ตำบลหนองเม็ก','ตำบลพังงู','ตำบลสะแบง','ตำบลสร้อยพร้าว','ตำบลบ้านเชียง','ตำบลบ้านยา','ตำบลโพนงาม','ตำบลผักตบ','ตำบลหนองไผ่','ตำบลหนองสระปลา','ตำบลดอนหายโศก'].map(t => <option key={t} value={t}>{t}</option>)}
+                      </select>
+                      <input type="text" placeholder="เบอร์โทร" className="border border-gray-300 rounded-lg px-2 py-2 text-sm w-full focus:ring-2 focus:ring-blue-500 outline-none" value={editForm.phoneNumber || ''} onChange={e => setEditForm({...editForm, phoneNumber: e.target.value})} />
+                    </div>
+                  ) : (
+                    <div>
+                      <div>บ้านเลขที่: {row.addressNo || '-'} ม.{row.addressMoo || '-'}</div>
+                      <div>ต.{row.subDistrict || '-'}</div>
+                      <div>โทร: {row.phoneNumber || '-'}</div>
+                    </div>
+                  )}
                 </td>
-                <td className="px-4 py-4 text-sm">
-                  <div className="flex items-center gap-2">
+                <td className="px-4 py-4 text-sm text-gray-600 truncate max-w-[600px] whitespace-normal align-top" title={row.selectedItems}>
+                  {editingId === row.id ? (
+                    <textarea 
+                      className="border border-gray-300 rounded-lg px-3 py-2 text-sm w-full h-24 focus:ring-2 focus:ring-blue-500 outline-none resize-none" 
+                      value={editForm.selectedItems || ''} 
+                      onChange={e => setEditForm({...editForm, selectedItems: e.target.value})}
+                      placeholder="อาการที่พบ (คั่นด้วยลูกน้ำ)"
+                    />
+                  ) : row.selectedItems}
+                </td>
+                <td className="px-4 py-4 text-sm align-top">
+                  <div className="flex flex-col items-start gap-2">
                     {editingId === row.id ? (
-                      <input type="number" className="border border-gray-300 rounded-lg px-2 py-1 text-xs w-16 focus:ring-2 focus:ring-blue-500 outline-none" value={editForm.score || 0} onChange={e => setEditForm({...editForm, score: parseInt(e.target.value)})} />
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-gray-500">คะแนน:</span>
+                        <input type="number" className="border border-gray-300 rounded-lg px-2 py-1 text-sm w-16 focus:ring-2 focus:ring-blue-500 outline-none" value={editForm.score || 0} onChange={e => setEditForm({...editForm, score: parseInt(e.target.value)})} />
+                      </div>
                     ) : (
                       <span className="bg-gray-100 border border-gray-200 text-gray-700 px-2.5 py-1.5 rounded-full font-bold shadow-sm text-xs">{row.score} คะแนน</span>
                     )}
-                    <span className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-bold shadow-sm ${
-                      row.levelLabel.includes('ปกติ') ? 'bg-emerald-50 text-emerald-700 border border-emerald-100' :
-                      row.levelLabel.includes('เฝ้าระวัง') ? 'bg-amber-50 text-amber-700 border border-amber-100' :
-                      'bg-rose-50 text-rose-700 border border-rose-100'
-                    }`}>
-                      {row.levelLabel.includes('ปกติ') && <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-2 shadow-[0_0_8px_rgba(16,185,129,0.8)]"></div>}
-                      {row.levelLabel.includes('เฝ้าระวัง') && <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-2 shadow-[0_0_8px_rgba(245,158,11,0.8)]"></div>}
-                      {row.levelLabel.includes('พบแพทย์') && <div className="w-1.5 h-1.5 rounded-full bg-rose-500 mr-2 shadow-[0_0_8px_rgba(244,63,94,0.8)]"></div>}
-                      {row.levelLabel.split(' ')[1] || row.levelLabel}
-                    </span>
+                    
+                    {editingId === row.id ? (
+                      <select className="border border-gray-300 rounded-lg px-2 py-2 text-xs w-full focus:ring-2 focus:ring-blue-500 outline-none mt-1" value={editForm.levelLabel || ''} onChange={e => setEditForm({...editForm, levelLabel: e.target.value})}>
+                        <option value="ปกติ — ดูแลตัวเองที่บ้าน">ปกติ — ดูแลตัวเองที่บ้าน</option>
+                        <option value="เฝ้าระวัง — ติดตามอาการ">เฝ้าระวัง — ติดตามอาการ</option>
+                        <option value="อาการรุนแรง — ส่งพบแพทย์">อาการรุนแรง — ส่งพบแพทย์</option>
+                      </select>
+                    ) : (
+                      <span className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-bold shadow-sm ${
+                        row.levelLabel.includes('ปกติ') ? 'bg-emerald-50 text-emerald-700 border border-emerald-100' :
+                        row.levelLabel.includes('เฝ้าระวัง') ? 'bg-amber-50 text-amber-700 border border-amber-100' :
+                        'bg-rose-50 text-rose-700 border border-rose-100'
+                      }`}>
+                        {row.levelLabel.includes('ปกติ') && <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-2 shadow-[0_0_8px_rgba(16,185,129,0.8)]"></div>}
+                        {row.levelLabel.includes('เฝ้าระวัง') && <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-2 shadow-[0_0_8px_rgba(245,158,11,0.8)]"></div>}
+                        {row.levelLabel.includes('พบแพทย์') && <div className="w-1.5 h-1.5 rounded-full bg-rose-500 mr-2 shadow-[0_0_8px_rgba(244,63,94,0.8)]"></div>}
+                        {row.levelLabel.split(' ')[1] || row.levelLabel}
+                      </span>
+                    )}
                   </div>
                 </td>
-                <td className="px-4 py-4 text-sm text-right">
+                <td className="px-4 py-4 text-sm text-gray-600 truncate max-w-[300px] whitespace-normal align-top" title={row.recommendation}>
+                  {editingId === row.id ? (
+                    <textarea 
+                      className="border border-gray-300 rounded-lg px-3 py-2 text-sm w-full h-24 focus:ring-2 focus:ring-blue-500 outline-none resize-none" 
+                      value={editForm.recommendation || ''} 
+                      onChange={e => setEditForm({...editForm, recommendation: e.target.value})}
+                      placeholder="คำแนะนำ"
+                    />
+                  ) : row.recommendation}
+                </td>
+                <td className="px-4 py-4 text-sm text-right align-top">
                   {editingId === row.id ? (
                     <div className="flex gap-2 justify-end">
                       <button onClick={handleSaveEdit} className="px-3 py-1.5 bg-blue-600 text-white rounded-lg text-xs font-semibold hover:bg-blue-700 transition-colors shadow-sm">บันทึก</button>
@@ -223,7 +279,7 @@ export default function AdminDataPage() {
             ))}
             {filteredData.length === 0 && (
               <tr>
-                <td colSpan={5} className="p-12 text-center text-gray-400 bg-gray-50/50 rounded-xl border border-dashed border-gray-200 m-4 block w-full mt-4">
+                <td colSpan={7} className="p-12 text-center text-gray-400 bg-gray-50/50 rounded-xl border border-dashed border-gray-200 m-4 block w-full mt-4">
                   <div className="flex flex-col items-center justify-center">
                     <svg className="w-12 h-12 text-gray-300 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                     ไม่พบข้อมูลที่ตรงกับเงื่อนไขการค้นหา
