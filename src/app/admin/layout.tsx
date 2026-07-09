@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import Image from 'next/image';
+import logoImg from '../../../logo.png';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -122,13 +124,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <aside className="w-full md:w-72 bg-white shadow-xl shadow-blue-900/5 z-10 flex-shrink-0 flex flex-col">
         <div className="p-8 border-b border-gray-100">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center shadow-lg shadow-blue-500/30">
-              <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br flex items-center justify-center">
+              <Image src={logoImg} alt="Logo" width={40} height={40} className="drop-shadow-md rounded-full bg-white p-0.5" />
             </div>
             <div>
-              <h2 className="text-xl font-bold text-gray-800 tracking-tight">ระบบ 3 สี อสม.</h2>
+              <h2 className="text-xl font-bold text-gray-800 tracking-tight">SOS score 3สี</h2>
               <p className="text-[11px] font-medium text-gray-400 uppercase tracking-wider">โรงพยาบาลหนองหาน</p>
             </div>
           </div>
