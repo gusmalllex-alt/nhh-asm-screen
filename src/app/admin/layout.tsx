@@ -60,7 +60,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 </svg>
               </div>
               <h1 className="text-2xl font-bold text-white tracking-tight">
-                ระบบคัดกรอง 3 สี อสม.<br />
+                SOS score 3สี<br />
                 โรงพยาบาลหนองหาน
               </h1>
             </div>

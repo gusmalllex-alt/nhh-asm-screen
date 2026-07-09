@@ -12,13 +12,12 @@ export default function Header() {
           <span className="traffic-dot red" />
         </div>
         <h1 className="text-[22px] sm:text-[28px] font-bold leading-tight">
-          ระบบคัดกรอง 3 สี
+          SOS score 3สี
         </h1>
       </div>
       <div className="flex items-center justify-between">
         <p className="text-[15px] sm:text-[16px] opacity-95 leading-relaxed">
-          <span className="hidden sm:inline">สำหรับ อสม. — </span>
-          เลือกข้อที่พบ แล้วกดประเมิน
+          คัดกรองผู้ป่วยโรคติดเชื้อในกระแสโลหิต
         </p>
         <div className="text-right">
           <div className="text-[11px] opacity-70 leading-none">

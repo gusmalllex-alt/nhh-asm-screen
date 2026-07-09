@@ -50,10 +50,14 @@ export default function MapComponent({ areaData }: MapComponentProps) {
         />
 
         {areaData.map((area, index) => {
-          // Try to match the exact name, or add/remove 'ตำบล' if needed
-          let coordName = area.name;
-          if (!coordName.startsWith('ตำบล') && coordName !== 'ไม่ระบุ') {
-            coordName = `ตำบล${coordName}`;
+          // Clean up the name to ensure it matches the keys in SUB_DISTRICT_COORDS
+          let cleanName = area.name.trim();
+          // Remove "ต." or "ตำบล" if it already exists to avoid duplicates like "ต.ตำบล"
+          cleanName = cleanName.replace(/^ต\./, '').replace(/^ตำบล/, '').trim();
+          let coordName = `ตำบล${cleanName}`;
+          
+          if (area.name === 'ไม่ระบุ') {
+            coordName = 'ไม่ระบุ';
           }
 
           const coords = SUB_DISTRICT_COORDS[coordName] || [
