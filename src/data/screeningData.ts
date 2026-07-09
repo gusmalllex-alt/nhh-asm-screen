@@ -82,6 +82,10 @@ export interface ScreeningResult {
   firstName: string;
   lastName: string;
   assessDate: string;
+  addressNo?: string;
+  addressMoo?: string;
+  subDistrict?: string;
+  phoneNumber?: string;
   selectedItems: string[];
   score: number;
   level: 'green' | 'yellow' | 'red';

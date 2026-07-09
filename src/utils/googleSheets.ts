@@ -9,7 +9,7 @@ export function saveGoogleSheetUrl(url: string): void {
 
 export function getGoogleSheetUrl(): string {
   // Hardcoded for simplicity as requested by user
-  return 'https://script.google.com/macros/s/AKfycbx6lWXB_5k0egy_60Fe_4u72zaLSPb8XWQZ3wu_qLyYyRBWfF6E0qLJaqiEkh0GnqYs/exec';
+  return 'https://script.google.com/macros/s/AKfycbyb3qPw4ChobrnQgoUI7lSHGGsLp872Mvq9hIDy0IOFqhyb0pHPwwL4kkigWqumuWQC/exec';
 }
 
 export async function sendToGoogleSheet(result: ScreeningResult, urlOverride?: string): Promise<boolean> {
@@ -28,6 +28,10 @@ export async function sendToGoogleSheet(result: ScreeningResult, urlOverride?: s
       firstName: result.firstName,
       lastName: result.lastName,
       assessDate: result.assessDate,
+      addressNo: result.addressNo || '',
+      addressMoo: result.addressMoo || '',
+      subDistrict: result.subDistrict || '',
+      phoneNumber: result.phoneNumber || '',
       score: result.score,
       selectedItems: selectedLabels || 'ไม่มีอาการ',
       levelLabel: result.levelLabel,
@@ -106,6 +110,10 @@ export async function updateGoogleSheetData(result: ScreeningResult) {
       firstName: result.firstName,
       lastName: result.lastName,
       assessDate: result.assessDate,
+      addressNo: result.addressNo || '',
+      addressMoo: result.addressMoo || '',
+      subDistrict: result.subDistrict || '',
+      phoneNumber: result.phoneNumber || '',
       score: result.score,
       selectedItems: selectedLabels || 'ไม่มีอาการ',
       levelLabel: result.levelLabel,

@@ -30,6 +30,10 @@ export default function HomePage() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [assessDate, setAssessDate] = useState(getTodayDate());
+  const [addressNo, setAddressNo] = useState('');
+  const [addressMoo, setAddressMoo] = useState('');
+  const [subDistrict, setSubDistrict] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [result, setResult] = useState<ScreeningResult | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -61,6 +65,10 @@ export default function HomePage() {
       firstName: firstName.trim(),
       lastName: lastName.trim(),
       assessDate,
+      addressNo,
+      addressMoo,
+      subDistrict,
+      phoneNumber,
       selectedItems: [...selectedIds],
       score: screening.score,
       level: screening.level,
@@ -96,6 +104,10 @@ export default function HomePage() {
     setFirstName('');
     setLastName('');
     setAssessDate(getTodayDate());
+    setAddressNo('');
+    setAddressMoo('');
+    setSubDistrict('');
+    setPhoneNumber('');
     setSelectedIds([]);
     setResult(null);
     setError('');
@@ -115,9 +127,17 @@ export default function HomePage() {
         firstName={firstName}
         lastName={lastName}
         assessDate={assessDate}
+        addressNo={addressNo}
+        addressMoo={addressMoo}
+        subDistrict={subDistrict}
+        phoneNumber={phoneNumber}
         onFirstNameChange={setFirstName}
         onLastNameChange={setLastName}
         onAssessDateChange={setAssessDate}
+        onAddressNoChange={setAddressNo}
+        onAddressMooChange={setAddressMoo}
+        onSubDistrictChange={setSubDistrict}
+        onPhoneNumberChange={setPhoneNumber}
       />
 
       <SymptomChecklist selectedIds={selectedIds} onToggle={handleToggle} />
