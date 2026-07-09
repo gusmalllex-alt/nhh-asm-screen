@@ -23,6 +23,7 @@ export default function AdminDataPage() {
   const [data, setData] = useState<DataRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const [searchSubDistrict, setSearchSubDistrict] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   
@@ -93,9 +94,9 @@ export default function AdminDataPage() {
   // Filter Data
   const filteredData = useMemo(() => {
     return data.filter(item => {
+      const fullName = `${item.firstName || ''} ${item.lastName || ''}`;
       const matchSearch = 
-        String(item.firstName || '').includes(searchTerm) || 
-        String(item.lastName || '').includes(searchTerm) || 
+        fullName.includes(searchTerm) || 
         String(item.id || '').includes(searchTerm);
         
       let matchDate = true;
@@ -106,9 +107,14 @@ export default function AdminDataPage() {
         matchDate = matchDate && new Date(item.assessDate) <= new Date(endDate);
       }
       
-      return matchSearch && matchDate;
+      let matchSubDistrict = true;
+      if (searchSubDistrict) {
+        matchSubDistrict = item.subDistrict === searchSubDistrict;
+      }
+      
+      return matchSearch && matchDate && matchSubDistrict;
     });
-  }, [data, searchTerm, startDate, endDate]);
+  }, [data, searchTerm, searchSubDistrict, startDate, endDate]);
 
   if (loading) {
     return <div className="flex justify-center items-center h-64"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div></div>;
@@ -134,7 +140,7 @@ export default function AdminDataPage() {
 
       {/* Filters */}
       <div className="p-6 md:p-8 bg-white border-b border-gray-50">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           <div className="relative">
             <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">ค้นหาชื่อ หรือ ID</label>
             <div className="relative">
@@ -149,6 +155,19 @@ export default function AdminDataPage() {
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
+          </div>
+          <div>
+            <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">ตำบล</label>
+            <select 
+              className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 focus:bg-white focus:border-blue-500 outline-none transition-all"
+              value={searchSubDistrict}
+              onChange={(e) => setSearchSubDistrict(e.target.value)}
+            >
+              <option value="">ทั้งหมด</option>
+              {['ตำบลหนองหาน','ตำบลหนองเม็ก','ตำบลพังงู','ตำบลสะแบง','ตำบลสร้อยพร้าว','ตำบลบ้านเชียง','ตำบลบ้านยา','ตำบลโพนงาม','ตำบลผักตบ','ตำบลหนองไผ่','ตำบลหนองสระปลา','ตำบลดอนหายโศก'].map(t => (
+                <option key={t} value={t}>{t}</option>
+              ))}
+            </select>
           </div>
           <div>
             <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">ตั้งแต่วันที่</label>
