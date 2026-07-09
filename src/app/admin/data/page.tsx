@@ -26,6 +26,21 @@ export default function AdminDataPage() {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   
+  // Helper to format phone number to ensure leading zero
+  const formatPhone = (phone?: string) => {
+    if (!phone) return '-';
+    const p = String(phone).trim();
+    // Thai numbers have 10 digits and start with 0. If it has 9 digits, it's missing the 0.
+    if (p.length === 9 && !p.startsWith('0')) {
+      return `0${p}`;
+    }
+    // Also remove any leading single quote if present
+    if (p.startsWith("'")) {
+      return p.substring(1);
+    }
+    return p;
+  };
+  
   // Edit State
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editForm, setEditForm] = useState<Partial<DataRow>>({});
@@ -203,7 +218,7 @@ export default function AdminDataPage() {
                     <div>
                       <div>บ้านเลขที่: {row.addressNo || '-'} ม.{row.addressMoo || '-'}</div>
                       <div>ต.{row.subDistrict || '-'}</div>
-                      <div>โทร: {row.phoneNumber || '-'}</div>
+                      <div>โทร: {formatPhone(row.phoneNumber)}</div>
                     </div>
                   )}
                 </td>
