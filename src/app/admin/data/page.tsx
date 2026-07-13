@@ -192,16 +192,16 @@ export default function AdminDataPage() {
             </select>
           </div>
           <div>
-            <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">ระดับความรุนแรง (สี)</label>
+            <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">สถานะ</label>
             <select 
               className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 focus:bg-white focus:border-blue-500 outline-none transition-all"
               value={searchLevel}
               onChange={(e) => setSearchLevel(e.target.value)}
             >
               <option value="">ทั้งหมด</option>
-              <option value="ปกติ">ปกติ (สีเขียว)</option>
-              <option value="เฝ้าระวัง">เฝ้าระวัง (สีเหลือง)</option>
-              <option value="พบแพทย์">พบแพทย์ (สีแดง)</option>
+              <option value="ปกติ">ปกติ</option>
+              <option value="เฝ้าระวัง">เฝ้าระวัง</option>
+              <option value="พบแพทย์">พบแพทย์</option>
             </select>
           </div>
           <div>
