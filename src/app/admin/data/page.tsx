@@ -143,18 +143,22 @@ export default function AdminDataPage() {
   }
 
   return (
-    <div className="bg-white rounded-[24px] shadow-sm border border-gray-100 overflow-hidden">
-      <div className="p-6 md:p-8 border-b border-gray-50 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-gray-50/30">
-        <div>
-          <h1 className="text-2xl font-extrabold text-gray-800 tracking-tight flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
-            </div>
-            ข้อมูลผู้ป่วยทั้งหมด
-          </h1>
-          <p className="text-sm text-gray-500 mt-1 ml-13">จัดการและค้นหาประวัติการคัดกรองของผู้ป่วย</p>
+    <div className="bg-white/80 backdrop-blur-xl rounded-[24px] shadow-sm hover:shadow-md transition-shadow border border-slate-200/60 overflow-hidden flex flex-col min-h-[calc(100dvh-120px)]">
+      {/* Header */}
+      <div className="p-6 md:p-8 border-b border-slate-200/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 shrink-0 shadow-sm">
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" /></svg>
+          </div>
+          <div>
+            <h1 className="text-2xl font-bold text-slate-800 tracking-tight">ข้อมูลผู้ป่วยทั้งหมด</h1>
+            <p className="text-slate-500 text-sm mt-0.5">จัดการและค้นหาประวัติการคัดกรองของผู้ป่วย</p>
+          </div>
         </div>
-        <button onClick={loadData} className="inline-flex items-center gap-2 px-5 py-2.5 bg-white border border-gray-200 text-gray-700 rounded-xl text-sm font-semibold hover:bg-gray-50 hover:text-blue-600 transition-all shadow-sm">
+        <button 
+          onClick={() => window.location.reload()}
+          className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition-all shadow-sm active:scale-95"
+        >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
           รีเฟรชข้อมูล
         </button>
@@ -226,22 +230,22 @@ export default function AdminDataPage() {
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto p-6 md:p-8 pt-4">
+      <div className="flex-1 overflow-auto bg-white/50 relative">
         <table className="w-full text-left border-collapse min-w-[800px]">
-          <thead className="bg-slate-50">
+          <thead className="bg-slate-50/90 backdrop-blur-md sticky top-0 z-20 shadow-[0_1px_2px_rgba(0,0,0,0.05)]">
             <tr>
-              <th className="px-4 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider border-y border-slate-200 border-r border-r-slate-100 whitespace-nowrap w-32 min-w-[120px]">วันที่ประเมิน</th>
-              <th className="px-4 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider border-y border-slate-200 border-r border-r-slate-100 whitespace-nowrap w-48 min-w-[200px]">ชื่อ-นามสกุล</th>
-              <th className="px-4 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider border-y border-slate-200 border-r border-r-slate-100 whitespace-nowrap w-48 min-w-[250px]">ที่อยู่ / เบอร์โทร</th>
-              <th className="px-4 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider border-y border-slate-200 border-r border-r-slate-100 w-full min-w-[300px]">อาการที่พบ</th>
-              <th className="px-4 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider border-y border-slate-200 border-r border-r-slate-100 whitespace-nowrap w-auto min-w-[150px]">คะแนน / สถานะ</th>
-              <th className="px-4 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider border-y border-slate-200 border-r border-r-slate-100 min-w-[200px]">คำแนะนำ</th>
-              <th className="px-4 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider border-y border-slate-200 text-right whitespace-nowrap w-24">จัดการ</th>
+              <th className="px-4 py-4 text-xs font-bold text-slate-600 uppercase tracking-wider border-b border-slate-200/80 border-r border-r-slate-200/50 whitespace-nowrap w-32 min-w-[120px]">วันที่ประเมิน</th>
+              <th className="px-4 py-4 text-xs font-bold text-slate-600 uppercase tracking-wider border-b border-slate-200/80 border-r border-r-slate-200/50 whitespace-nowrap w-48 min-w-[200px]">ชื่อ-นามสกุล</th>
+              <th className="px-4 py-4 text-xs font-bold text-slate-600 uppercase tracking-wider border-b border-slate-200/80 border-r border-r-slate-200/50 whitespace-nowrap w-48 min-w-[250px]">ที่อยู่ / เบอร์โทร</th>
+              <th className="px-4 py-4 text-xs font-bold text-slate-600 uppercase tracking-wider border-b border-slate-200/80 border-r border-r-slate-200/50 w-full min-w-[300px]">อาการที่พบ</th>
+              <th className="px-4 py-4 text-xs font-bold text-slate-600 uppercase tracking-wider border-b border-slate-200/80 border-r border-r-slate-200/50 whitespace-nowrap w-auto min-w-[150px]">คะแนน / สถานะ</th>
+              <th className="px-4 py-4 text-xs font-bold text-slate-600 uppercase tracking-wider border-b border-slate-200/80 border-r border-r-slate-200/50 min-w-[200px]">คำแนะนำ</th>
+              <th className="px-4 py-4 text-xs font-bold text-slate-600 uppercase tracking-wider border-b border-slate-200/80 text-right whitespace-nowrap w-24">จัดการ</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-100 bg-white">
+          <tbody className="divide-y divide-slate-100/80 bg-transparent">
             {paginatedData.map((row, idx) => (
-              <tr key={idx} className="hover:bg-blue-50/40 transition-colors group">
+              <tr key={idx} className="hover:bg-blue-50/60 transition-colors group">
                 <td className="px-4 py-4 text-sm text-gray-500">
                   {editingId === row.id ? (
                     <input type="date" className="border border-gray-300 rounded-lg px-3 py-2 text-sm w-full focus:ring-2 focus:ring-blue-500 outline-none" value={editForm.assessDate || ''} onChange={e => setEditForm({...editForm, assessDate: e.target.value})} />

@@ -119,7 +119,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col md:flex-row font-sans">
+    <div className="min-h-[100dvh] bg-slate-50 flex flex-col md:flex-row font-sans selection:bg-blue-100 selection:text-blue-900">
       {/* Sidebar for Desktop / Topbar for Mobile */}
       <aside className="w-full md:w-72 bg-white shadow-xl shadow-blue-900/5 z-10 flex-shrink-0 flex flex-col">
         <div className="p-8 border-b border-gray-100">
@@ -170,18 +170,18 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       </aside>
 
       {/* Main Content - Full Width */}
-      <main className="flex-1 p-4 sm:p-8 md:p-10 overflow-y-auto w-full flex flex-col">
-        <div className="w-full flex-grow">
+      <main className="flex-1 p-4 sm:p-8 md:p-10 overflow-y-auto w-full flex flex-col bg-slate-50/50">
+        <div className="w-full flex-grow max-w-7xl mx-auto">
           {children}
         </div>
-        <footer className="w-full pt-8 pb-4 mt-auto relative z-10">
+        <footer className="w-full pt-10 pb-6 mt-auto relative z-10 max-w-7xl mx-auto">
           <div className="flex justify-center px-4">
-            <div className="flex items-center gap-2 sm:gap-3 bg-[#0a1917] border border-white/20 rounded-full py-1 pr-3 sm:pr-4 pl-1 shadow-lg max-w-full overflow-hidden">
-              <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-md bg-[#00b087] flex items-center justify-center text-white shrink-0">
-                <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+            <div className="flex items-center gap-2 sm:gap-3 bg-white/60 backdrop-blur-md border border-gray-200/50 rounded-full py-1.5 pr-4 pl-1.5 shadow-sm hover:shadow-md transition-shadow">
+              <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-white shrink-0 shadow-sm">
+                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
               </div>
-              <div className="text-[9px] sm:text-[10px] md:text-[11px] font-medium text-gray-300 truncate">
-                พัฒนาโดย <span className="text-[#00b087] font-bold">นายศุภชัย สุนารักษ์</span> <span className="hidden sm:inline">·</span><span className="sm:hidden"> </span>นักวิชาการสถิติ <span className="hidden sm:inline">·</span><span className="sm:hidden"> </span>กลุ่มงานสุขภาพดิจิทัล
+              <div className="text-[10px] sm:text-[11px] font-medium text-slate-600 truncate tracking-wide">
+                พัฒนาโดย <span className="text-emerald-600 font-bold">นายศุภชัย สุนารักษ์</span> <span className="hidden sm:inline text-slate-300">·</span><span className="sm:hidden"> </span>นักวิชาการสถิติ <span className="hidden sm:inline text-slate-300">·</span><span className="sm:hidden"> </span>กลุ่มงานสุขภาพดิจิทัล
               </div>
             </div>
           </div>

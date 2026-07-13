@@ -200,48 +200,48 @@ export default function AdminDashboard() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-[20px] p-5 text-white shadow-lg shadow-blue-500/20 relative overflow-hidden group">
-          <div className="absolute -right-4 -top-4 opacity-10 group-hover:scale-110 transition-transform duration-500">
-            <svg className="w-24 h-24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-[24px] p-6 text-white shadow-xl shadow-blue-500/20 relative overflow-hidden group border border-blue-400/20">
+          <div className="absolute -right-4 -top-4 opacity-10 group-hover:scale-110 transition-transform duration-700">
+            <svg className="w-28 h-28" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
           </div>
-          <p className="text-blue-100 font-medium text-sm mb-2 relative z-10">จำนวนทั้งหมด</p>
-          <div className="flex items-baseline gap-1 relative z-10">
-            <h3 className="text-3xl font-extrabold">{total}</h3>
-            <span className="text-blue-200 text-sm">คน</span>
-          </div>
-        </div>
-
-        <div className="bg-gradient-to-br from-emerald-400 to-emerald-500 rounded-[20px] p-5 text-white shadow-lg shadow-emerald-500/20 relative overflow-hidden group">
-          <div className="absolute -right-4 -top-4 opacity-10 group-hover:scale-110 transition-transform duration-500">
-            <svg className="w-24 h-24" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          </div>
-          <p className="text-emerald-50 font-medium text-sm mb-2 relative z-10">ระดับปกติ</p>
-          <div className="flex items-baseline gap-1 relative z-10">
-            <h3 className="text-3xl font-extrabold">{greenCount}</h3>
-            <span className="text-emerald-100 text-sm">คน ({greenPct}%)</span>
+          <p className="text-blue-100 font-medium text-sm mb-2 relative z-10 tracking-wide">จำนวนทั้งหมด</p>
+          <div className="flex items-baseline gap-1.5 relative z-10">
+            <h3 className="text-4xl font-extrabold tracking-tight">{total}</h3>
+            <span className="text-blue-200 text-sm font-medium">คน</span>
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-amber-400 to-amber-500 rounded-[20px] p-5 text-white shadow-lg shadow-amber-500/20 relative overflow-hidden group">
-          <div className="absolute -right-4 -top-4 opacity-10 group-hover:scale-110 transition-transform duration-500">
-            <svg className="w-24 h-24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        <div className="bg-gradient-to-br from-emerald-400 to-teal-500 rounded-[24px] p-6 text-white shadow-xl shadow-emerald-500/20 relative overflow-hidden group border border-emerald-400/20">
+          <div className="absolute -right-4 -top-4 opacity-10 group-hover:scale-110 transition-transform duration-700">
+            <svg className="w-28 h-28" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
           </div>
-          <p className="text-amber-50 font-medium text-sm mb-2 relative z-10">เฝ้าระวัง</p>
-          <div className="flex items-baseline gap-1 relative z-10">
-            <h3 className="text-3xl font-extrabold">{yellowCount}</h3>
-            <span className="text-amber-100 text-sm">คน ({yellowPct}%)</span>
+          <p className="text-emerald-50 font-medium text-sm mb-2 relative z-10 tracking-wide">ระดับปกติ</p>
+          <div className="flex items-baseline gap-1.5 relative z-10">
+            <h3 className="text-4xl font-extrabold tracking-tight">{greenCount}</h3>
+            <span className="text-emerald-100 text-sm font-medium">คน ({greenPct}%)</span>
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-rose-400 to-rose-500 rounded-[20px] p-5 text-white shadow-lg shadow-rose-500/20 relative overflow-hidden group">
-          <div className="absolute -right-4 -top-4 opacity-10 group-hover:scale-110 transition-transform duration-500">
-            <svg className="w-24 h-24" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/></svg>
+        <div className="bg-gradient-to-br from-amber-400 to-orange-500 rounded-[24px] p-6 text-white shadow-xl shadow-amber-500/20 relative overflow-hidden group border border-amber-400/20">
+          <div className="absolute -right-4 -top-4 opacity-10 group-hover:scale-110 transition-transform duration-700">
+            <svg className="w-28 h-28" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
           </div>
-          <p className="text-rose-50 font-medium text-sm mb-2 relative z-10">ส่งพบแพทย์</p>
-          <div className="flex items-baseline gap-1 relative z-10">
-            <h3 className="text-3xl font-extrabold">{redCount}</h3>
-            <span className="text-rose-100 text-sm">คน ({redPct}%)</span>
+          <p className="text-amber-50 font-medium text-sm mb-2 relative z-10 tracking-wide">เฝ้าระวัง</p>
+          <div className="flex items-baseline gap-1.5 relative z-10">
+            <h3 className="text-4xl font-extrabold tracking-tight">{yellowCount}</h3>
+            <span className="text-amber-100 text-sm font-medium">คน ({yellowPct}%)</span>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-br from-rose-400 to-red-500 rounded-[24px] p-6 text-white shadow-xl shadow-rose-500/20 relative overflow-hidden group border border-rose-400/20">
+          <div className="absolute -right-4 -top-4 opacity-10 group-hover:scale-110 transition-transform duration-700">
+            <svg className="w-28 h-28" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/></svg>
+          </div>
+          <p className="text-rose-50 font-medium text-sm mb-2 relative z-10 tracking-wide">ส่งพบแพทย์</p>
+          <div className="flex items-baseline gap-1.5 relative z-10">
+            <h3 className="text-4xl font-extrabold tracking-tight">{redCount}</h3>
+            <span className="text-rose-100 text-sm font-medium">คน ({redPct}%)</span>
           </div>
         </div>
       </div>
@@ -249,7 +249,7 @@ export default function AdminDashboard() {
       {/* Charts Section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Pie Chart */}
-        <div className="bg-white rounded-[24px] p-6 shadow-sm border border-gray-100">
+        <div className="bg-white/80 backdrop-blur-xl p-6 rounded-[24px] shadow-sm hover:shadow-md transition-shadow border border-slate-200/60 flex flex-col">
           <h2 className="text-lg font-bold text-gray-800 mb-6 flex items-center gap-2">
             <svg className="w-5 h-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" /></svg>
             สัดส่วนระดับความรุนแรง
@@ -285,8 +285,8 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        {/* Area/Bar Chart */}
-        <div className="bg-white rounded-[24px] p-6 shadow-sm border border-gray-100 lg:col-span-2">
+        {/* Area Chart */}
+        <div className="bg-white/80 backdrop-blur-xl p-6 rounded-[24px] shadow-sm hover:shadow-md transition-shadow border border-slate-200/60 flex flex-col lg:col-span-2">
           <h2 className="text-lg font-bold text-gray-800 mb-6 flex items-center gap-2">
             <svg className="w-5 h-5 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" /></svg>
             แนวโน้มการคัดกรอง (14 วันล่าสุด)
@@ -323,7 +323,7 @@ export default function AdminDashboard() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Top Symptoms Bar Chart */}
-        <div className="bg-white rounded-[24px] p-6 shadow-sm border border-gray-100">
+        <div className="bg-white/80 backdrop-blur-xl p-6 rounded-[24px] shadow-sm hover:shadow-md transition-shadow border border-slate-200/60 flex flex-col">
           <h2 className="text-lg font-bold text-gray-800 mb-6 flex items-center gap-2">
             <svg className="w-5 h-5 text-fuchsia-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
             10 อันดับอาการที่พบมากที่สุด
@@ -357,7 +357,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Insight Card */}
-        <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-[24px] p-8 shadow-sm text-white flex flex-col justify-center relative overflow-hidden group">
+        <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-[24px] p-8 shadow-xl shadow-indigo-500/20 text-white flex flex-col justify-center relative overflow-hidden group border border-indigo-400/20">
           <div className="absolute -right-10 -bottom-10 opacity-20 group-hover:scale-110 transition-transform duration-700">
             <svg className="w-64 h-64" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
           </div>
@@ -379,7 +379,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Score Distribution Chart */}
-      <div className="bg-white rounded-[24px] overflow-hidden shadow-sm border border-gray-100 flex flex-col p-6 mt-6">
+      <div className="bg-white/80 backdrop-blur-xl p-6 rounded-[24px] shadow-sm hover:shadow-md transition-shadow border border-slate-200/60 flex flex-col mt-6">
         <h2 className="text-lg font-bold text-gray-800 mb-6 flex items-center gap-2">
           <svg className="w-5 h-5 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
           การกระจายของคะแนนการประเมินสุขภาพ
@@ -424,7 +424,7 @@ export default function AdminDashboard() {
 
       {/* Area Analysis Chart & Map */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-        <div className="bg-white rounded-[24px] overflow-hidden shadow-sm border border-gray-100 flex flex-col p-6">
+        <div className="bg-white/80 backdrop-blur-xl p-6 rounded-[24px] shadow-sm hover:shadow-md transition-shadow border border-slate-200/60 flex flex-col">
           <h2 className="text-lg font-bold text-gray-800 mb-6 flex items-center gap-2">
             <svg className="w-5 h-5 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" /></svg>
             การวิเคราะห์พื้นที่ (จำนวนผู้ป่วยแยกตามตำบล)
