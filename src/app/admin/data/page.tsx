@@ -122,8 +122,8 @@ export default function AdminDataPage() {
       }
       
       let matchLevel = true;
-      if (searchLevel) {
-        matchLevel = item.levelLabel === searchLevel;
+      if (searchLevel && item.levelLabel) {
+        matchLevel = item.levelLabel.includes(searchLevel);
       }
       
       return matchSearch && matchDate && matchSubDistrict && matchLevel;
